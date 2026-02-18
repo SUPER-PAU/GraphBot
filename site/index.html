@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>GraphBot</title>
+
+    <!-- Подключение файла стилей, где описан внешний вид всех элементов -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Основной контейнер всей страницы (обёртка сайта) -->
+    <div class="page">
+
+        <!-- Верхний главный блок сайта с названием и описанием сервиса -->
+        <section class="hero">
+
+            <!-- Название сервиса (логотип текстом) -->
+            <h1 class="logo">GraphBot</h1>
+
+            <!-- Короткий слоган под названием -->
+            <p class="tagline">Умный подбор визуализации для ваших данных</p>
+
+            <!-- Подробное пояснение что делает сервис -->
+            <p class="subtitle">
+                Загрузите таблицу — сервис сам предложит лучший тип графика на основе анализа ваших данных
+            </p>
+
+        </section>
+
+        <!-- Блок с большой карточкой загрузки данных -->
+        <section class="upload-card">
+
+            <!-- Карточка с пунктирной рамкой и кнопкой загрузки -->
+            <div class="upload-box">
+
+                <!-- Круглая иконка со стрелкой загрузки -->
+                <div class="upload-icon">
+
+                    <!-- Символ стрелки внутри иконки -->
+                    <span class="arrow">↑</span>
+
+                </div>
+
+                <!-- Заголовок области результата -->
+                <h2>Здесь появятся результаты анализа</h2>
+
+                <!-- Описание что нужно сделать пользователю -->
+                <p>Загрузите файл с данными, и мы автоматически подберём лучшую визуализацию</p>
+
+                <!-- Кнопка открытия всплывающего окна загрузки -->
+                <button class="upload-button" onclick="openModal()">Загрузить файл</button>
+
+            </div>
+
+        </section>
+
+        <section class="loading-card" id="loadingCard">
+
+            <div class="loader"></div>
+
+            <h3>Анализируем данные...</h3>
+            <p>Подбираем оптимальный тип графика</p>
+
+        </section>
+
+        <section class="result-card" id="resultCard" style="display:none;">
+
+            <h2>Результаты анализа</h2>
+
+        
+            <div class="analysis-container">
+
+                <!-- БЛОК ГРАФИКА -->
+                <div id="chart-container" style="text-align:center; margin-bottom: 30px;">
+                    <!-- сюда будет вставляться график -->
+                </div>
+
+                <!-- БЛОК КНОПОК -->
+                <div id="chart-buttons" style="text-align:center;">
+                    <!-- сюда генерируются кнопки -->
+                </div>
+
+            </div>
+
+
+            <button class="download-btn">Скачать график</button>
+
+            <!-- КНОПКИ УПРАВЛЕНИЯ — ВНУТРИ result-card -->
+            <div class="chart-actions">
+                <button>Другой тип</button>
+                <button>Настроить цвета</button>
+                <button>Исключить типы</button>
+                <button class="primary">Новый файл</button>
+            </div>
+
+        </section>
+
+        <!-- Нижняя информационная панель под карточкой -->
+        <section class="info-bar">
+
+            <!-- Левая часть панели — ссылка "Как это работает?" -->
+            <div class="info-left">
+
+                <!-- Кружок со знаком вопроса -->
+                <span class="question-icon">?</span>
+
+                <a href="how.html">Как это работает?</a>
+
+            </div>
+
+            <!-- Правая часть панели с форматами и безопасностью -->
+            <div class="info-right">
+
+                <!-- Текст поддерживаемых форматов файлов -->
+                <span>Поддерживаемые форматы: CSV, Excel</span>
+
+                <!-- Строка про безопасность данных -->
+                <span class="secure">
+
+                    <!-- Иконка замка -->
+                    <span class="lock-icon">🔒</span>
+
+                    Данные не сохраняются
+
+                </span>
+
+            </div>
+
+        </section>
+
+        <!-- Подвал сайта -->
+        <footer class="footer">
+
+            <!-- Название сервиса в подвале -->
+            <p class="footer-title">GraphBot — Визуализация данных с ИИ</p>
+
+            <!-- Ссылки на дополнительные страницы -->
+            <div class="footer-links">
+
+                <a href="#">О проекте</a>
+                <span>•</span>
+                <a href="#">Контакты</a>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- Затемнённый фон для модального окна загрузки -->
+    <div class="modal-overlay" id="uploadModal">
+
+        <!-- Само всплывающее окно -->
+        <div class="modal">
+
+            <!-- Верхняя панель модального окна -->
+            <div class="modal-header">
+
+                <!-- Заголовок окна -->
+                <h3>Загрузить файл</h3>
+
+                <!-- Кнопка закрытия (крестик) -->
+                <span class="modal-close" onclick="closeModal()">✕</span>
+
+            </div>
+
+            <!-- Основная часть модального окна -->
+            <div class="modal-body">
+
+                <!-- Область drag & drop загрузки файла -->
+                <div class="drop-zone">
+
+                    <!-- Круглая иконка загрузки -->
+                    <div class="drop-icon">⬆</div>
+
+                    <!-- Основная надпись -->
+                    <p class="drop-main">Перетащите файл сюда</p>
+
+                    <!-- Альтернативный способ выбора файла -->
+                    <p class="drop-sub">
+                        или <span class="drop-link" onclick="openFile()">нажмите, чтобы выбрать файл</span>
+                    </p>
+
+                    <input type="file" id="fileInput" hidden accept=".csv,.xls,.xlsx">
+
+                </div>
+
+                <!-- Информация о форматах и ограничениях -->
+                <p class="modal-info">
+                    Поддерживаются файлы CSV и Excel (.xlsx, .xls)<br>
+                    Максимальный размер файла: 10 MB
+                </p>
+
+            </div>
+
+            <!-- Нижняя панель с кнопками -->
+            <div class="modal-footer">
+
+                <!-- Кнопка закрытия окна -->
+                <button class="btn-cancel" onclick="closeModal()">Отмена</button>
+
+                <!-- Кнопка подтверждения -->
+                <button class="btn-primary">Продолжить</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Скрипты управления открытием и закрытием модального окна -->
+    <script>
+
+        let selectedFile = null
+
+        function openModal() {
+            document.getElementById("uploadModal").style.display = "flex"
+        }
+
+        function closeModal() {
+            document.getElementById("uploadModal").style.display = "none"
+        }
+
+        function openFile() {
+            document.getElementById("fileInput").click()
+        }
+
+        const dropZone = document.querySelector(".drop-zone")
+        const fileInput = document.getElementById("fileInput")
+
+        fileInput.addEventListener("change", e => {
+            selectedFile = e.target.files[0]
+            showFile(selectedFile)
+        })
+
+        dropZone.addEventListener("dragover", e => {
+            e.preventDefault()
+        })
+
+        dropZone.addEventListener("drop", e => {
+            e.preventDefault()
+            selectedFile = e.dataTransfer.files[0]
+            showFile(selectedFile)
+        })
+
+        async function showFile(file) {
+            if (!file) return
+
+            closeModal()
+
+            document.querySelector(".upload-card").style.display = "none"
+            document.getElementById("loadingCard").style.display = "block"
+
+            const formData = new FormData()
+            formData.append("file", file)
+
+            const response = await fetch("/analyze", {
+                method: "POST",
+                body: formData
+            })
+
+            const data = await response.json()
+
+            window.sessionId = data.session_id
+            window.recommendations = data.recommendations
+
+            document.getElementById("loadingCard").style.display = "none"
+            document.getElementById("resultCard").style.display = "block"
+
+            renderChartOptions()
+        }
+
+        function renderChartOptions() {
+
+            const container = document.getElementById("chart-buttons")
+            container.innerHTML = ""
+
+            window.recommendations.forEach((rec, index) => {
+
+                const wrapper = document.createElement("div")
+                wrapper.style.marginBottom = "15px"
+
+                const btn = document.createElement("button")
+                btn.innerText = rec.type
+                btn.classList.add("chart-option-btn")
+                btn.onclick = () => buildChart(index)
+
+                const desc = document.createElement("div")
+                desc.innerText = rec.why
+                desc.style.fontSize = "14px"
+                desc.style.color = "#666"
+                desc.style.marginTop = "5px"
+
+                wrapper.appendChild(btn)
+                wrapper.appendChild(desc)
+
+                container.appendChild(wrapper)
+            })
+        }
+
+
+        async function buildChart(index) {
+
+            const response = await fetch("/build_chart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    session_id: window.sessionId,
+                    chart_index: index
+                })
+            })
+            const blob = await response.blob()
+            const url = URL.createObjectURL(blob)
+            // const data = await response.json();
+
+            const chartContainer = document.getElementById("chart-container");
+
+            // УДАЛЯЕМ старый график
+            chartContainer.innerHTML = "";
+
+            // Создаем новый img
+            const img = document.createElement("img");
+            img.src = url; // защита от кэша
+            img.style.maxWidth = "800px";
+            img.style.borderRadius = "10px";
+
+            chartContainer.appendChild(img);
+        }
+
+
+    </script>
+
+</body>
+</html>

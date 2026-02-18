@@ -1,9 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from openpyxl import Workbook
-from openpyxl.chart import BarChart, LineChart, Reference, AreaChart
+from openpyxl.chart import BarChart, LineChart, Reference, AreaChart, PieChart
 from openpyxl.drawing.image import Image as ExcelImage
 from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.utils import get_column_letter
 import io
 import os
 import json
@@ -19,6 +20,39 @@ def take_commands_and_return_type(json_input):
         else:
             list_commands.append("line_chart") # базовый если нету нужного
     return list_commands
+
+def generate_chart(file_path, chart_config):
+    df = pd.read_excel(file_path)
+
+    chart_type = chart_config["type"]
+    columns = chart_config["columns_used"]
+
+    plt.figure()
+
+    if chart_type == "bar_chart":
+        df[columns].plot(kind="bar")
+
+    elif chart_type == "line_chart":
+        df[columns].plot(kind="line")
+
+    elif chart_type == "pie_chart":
+        df[columns[0]].value_counts().plot(kind="pie")
+
+    elif chart_type == "histogram":
+        df[columns[0]].plot(kind="hist")
+
+    elif chart_type == "scatter_plot":
+        plt.scatter(df[columns[0]], df[columns[1]])
+
+    plt.title(chart_type)
+
+    os.makedirs("static", exist_ok=True)
+    output_path = "static/chart.png"
+    plt.savefig(output_path)
+    plt.close()
+
+    return output_path
+
 
 def generate_report(input_file, sheets_to_process, user_commands):
     """

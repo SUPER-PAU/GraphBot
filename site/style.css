@@ -1,0 +1,671 @@
+/* Общие настройки страницы: убираем отступы браузера, задаём шрифт и фон */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(#f7f9fc, #ffffff); /* плавный светлый фон */
+    color: #222; /* основной цвет текста */
+}
+
+
+/* Основной контейнер сайта — растягивается на весь экран и выстраивает блоки вертикально */
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Верхний блок с названием и описанием */
+.hero {
+    text-align: center;       /* текст по центру */
+    margin-top: 25px;         /* отступ сверху */
+    max-width: 800px;         /* ограничение ширины */
+    line-height: 1.6;         /* расстояние между строками */
+}
+
+
+/* Название ChartBot */
+.logo {
+    font-size: 48px;          /* крупный текст */
+    color: #6d5dfc;           /* фиолетовый цвет */
+    margin-bottom: 10px;
+}
+
+
+/* Короткий слоган */
+.tagline {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+
+/* Дополнительное описание */
+.subtitle {
+    font-size: 14px;
+    color: #666;              /* серый для мягкости */
+}
+
+
+/* Блок карточки загрузки */
+.upload-card {
+    margin-top: 60px;
+}
+
+
+/* Основная карточка загрузки файла */
+.upload-box {
+    border: 2px dashed #d0d7e2;          /* пунктирная рамка */
+    border-radius: 16px;                /* скругление углов */
+    padding: 60px 120px;                /* внутренние отступы */
+    text-align: center;
+    background: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05); /* тень */
+    max-width: 900px;
+}
+
+
+/* Круглая иконка загрузки */
+.upload-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;        /* делает круг */
+    background: #f1f3f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Стрелка внутри круга */
+.upload-icon .arrow {
+    font-size: 28px;
+    color: #8b8b8b;
+}
+
+
+/* Кнопка "Загрузить файл" */
+.upload-button {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #4f46e5, #9333ea); /* градиент */
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* Эффект наведения на кнопку */
+.upload-button:hover {
+    opacity: 0.9; /* немного прозрачнее */
+}
+
+
+/* Информационная панель под карточкой */
+.info-bar {
+    margin-top: 40px;
+    width: 820px;
+    background: white;
+    padding: 20px 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Левая часть панели "Как это работает?" */
+.info-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4f46e5;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+/* Правая часть панели с форматами */
+.info-right {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: #444;
+}
+
+
+/* Текст про безопасность данных */
+.info-right .secure {
+    color: #666;
+    font-size: 12px;
+}
+
+
+/* Кружок с вопросом */
+.question-icon {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #4f46e5;
+    color: #4f46e5;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+
+/* Отступ у иконки замка */
+.lock-icon {
+    margin: 0 6px;
+}
+
+
+/* Подвал сайта */
+.footer {
+    margin-top: auto;
+    padding: 50px 0 30px;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+
+/* Заголовок подвала */
+.footer-title {
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+
+/* Авторские права */
+.footer-copy {
+    margin-bottom: 8px;
+}
+
+
+/* Контейнер ссылок подвала */
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+
+/* Стили ссылок */
+.footer-links a {
+    color: #4f46e5;
+    text-decoration: none;
+}
+
+
+/* Подчёркивание при наведении */
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+
+/* Затемнение фона при открытой модалке */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+/* Окно загрузки файла */
+.modal {
+    background: white;
+    width: 560px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+
+/* Верхняя панель модального окна */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/* Кнопка закрытия */
+.modal-close {
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+}
+
+
+/* Основное содержимое окна */
+.modal-body {
+    padding: 24px;
+}
+
+
+/* 👉 Зона перетаскивания файла (drag & drop) */
+.drop-zone {
+    transition: 0.2s ease;           /* плавное изменение цвета */
+    border: 2px dashed #d0d7e2;      /* пунктирная рамка */
+    border-radius: 14px;             /* скругление углов */
+    padding: 50px;                   /* внутренний отступ */
+    text-align: center;
+}
+
+
+/* Подсветка зоны при наведении */
+.drop-zone:hover {
+    border-color: #4f46e5;           /* рамка становится синей */
+    background: #f5f7ff;             /* лёгкий синий фон */
+}
+
+
+/* Круглая иконка внутри дроп-зоны */
+.drop-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #eef2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    color: #4f46e5;
+    font-size: 22px;
+}
+
+
+/* Основный текст дроп-зоны */
+.drop-main {
+    font-weight: 500;
+}
+
+
+/* Второстепенный текст */
+.drop-sub {
+    font-size: 14px;
+    color: #666;
+}
+
+
+/* Ссылка выбора файла */
+.drop-link {
+    color: #4f46e5;
+    cursor: pointer;
+}
+
+
+/* Информация под дроп-зоной */
+.modal-info {
+    margin-top: 18px;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+
+
+/* Нижняя панель кнопок */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 20px;
+    border-top: 1px solid #eee;
+}
+
+
+/* Кнопка отмены */
+.btn-cancel {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+}
+
+
+/* Основная кнопка продолжения */
+.btn-primary {
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ===============================
+   Страница "Как это работает"
+=================================*/
+
+.how-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px 100px;
+}
+
+/* Ссылка назад */
+.back-link {
+    color: #4f46e5;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+
+/* Заголовок */
+.how-hero {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+    .how-hero h1 {
+        font-size: 42px;
+        color: #6d5dfc;
+    }
+
+    .how-hero p {
+        color: #666;
+    }
+
+/* Сетка шагов */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+
+/* Иконка шага */
+.step-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    flex-shrink: 0;
+}
+
+    .step-icon.blue {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .step-icon.purple {
+        background: linear-gradient(135deg, #9333ea, #7e22ce);
+    }
+
+    .step-icon.pink {
+        background: linear-gradient(135deg, #ec4899, #db2777);
+    }
+
+    .step-icon.orange {
+        background: linear-gradient(135deg, #f97316, #ea580c);
+    }
+
+
+/* Почему ChartBot */
+.why-block {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.why-items {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.why-item {
+    padding: 20px;
+    flex: 1;
+}
+
+.why-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+/* Кнопка */
+.try-button {
+    margin-top: 40px;
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+    border: none;
+    color: white;
+    padding: 14px 36px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.how-title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    color: #6d5dfc;
+    margin-bottom: 12px;
+}
+
+.how-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+.step-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.step-number {
+    font-size: 31px;
+    font-weight: 800;
+    color: #d1d9e6;
+}
+
+.step-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.step-text {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.why-card {
+    background: white;
+    padding: 36px 40px;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.why-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.why-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #f1f3ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin: 0 auto 14px;
+}
+
+.why-item p {
+    color: #888;
+    line-height: 1.45;
+    font-size: 12.5px;
+}
+
+.result-card {
+    margin-top: 60px;
+    background: white;
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    width: 900px;
+}
+
+.result-explain {
+    background: #f1f6ff;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 20px 0;
+    color: #333;
+}
+
+.chart-placeholder {
+    height: 300px;
+    border-radius: 14px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 18px;
+}
+
+.result-card {
+    background: white;
+    padding: 32px;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.result-reason {
+    background: #f3f7ff;
+    border: 1px solid #cfe0ff;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.result-chart {
+    height: 360px;
+    border-radius: 16px;
+    background: #f6f7fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+}
+
+.download-btn {
+    margin-top: 16px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.chart-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+    .chart-actions button {
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        background: white;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+        .chart-actions button:hover {
+            background: #f3f5ff;
+        }
+
+    .chart-actions .primary {
+        background: linear-gradient(135deg, #4f46e5, #9333ea);
+        color: white;
+        border: none;
+    }
+
+    .chart-actions button:hover {
+        background: #f5f5f5;
+    }
+
+    .chart-actions .primary:hover {
+        background: linear-gradient(135deg, #4338ca, #7e22ce);
+        opacity: 1;
+    }
+
+.loading-card {
+    display: none;
+    margin-top: 60px;
+    background: white;
+    padding: 50px;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    text-align: center;
+    width: 600px;
+}
+
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #eee;
+    border-top: 6px solid #6d5dfc;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
